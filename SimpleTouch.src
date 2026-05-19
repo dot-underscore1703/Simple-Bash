@@ -1,0 +1,10 @@
+pf = params[0]
+pp = parent_path(pf)
+c = get_shell.host_computer
+if pp == pf then
+	pp = current_path
+end if
+p = c.File(pp)
+ap = pf.split("/")
+o = c.touch(p.path, ap[ap.len - 1])
+print(o)
