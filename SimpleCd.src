@@ -1,2 +1,1 @@
-p = params
-print(cd(pathFile))
+cd(params[0])
