@@ -1,0 +1,2 @@
+o = get_shell.host_computer.show_procs
+print o
