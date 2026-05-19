@@ -1,0 +1,60 @@
+ac = include_lib("/lib/aptclient.so")
+
+pu = function(fp)
+	p = []
+	t = get_shell.host_computer.File(fp)
+	if t != null then
+		f = t.get_files
+		for i in f
+			o = ac.check_upgrade(i.path)
+			if o == true then
+				p.push(itemFile.name)
+			end if
+		end for
+	end if
+	return p
+end function 
+p = params
+a = p[0]
+if a == "ud" then
+	o = ac.update
+	print o
+else if a == "in" then
+	cp = ""
+	if p.len == 3 then cp = p[2]
+	o = ac.install(p[1], cp)
+	print o
+else if a == "sc" then
+	print ac.search(p[1])
+else if a == "sh" then
+	print ac.show(p[1])
+else if a == "ar" then
+	o = aptclient.add_repo(p[1], p[2])
+	exit o 
+else if a == "dr" then
+    o = ac.del_repo(p[1])
+    print o
+else if a == "ug" then
+	if p.len == 1 then
+		pp = pu("/lib") + pu("/bin")
+		if pp.len == 0 then exit
+		pk = ""
+		for i in pp
+			pk = pk + " " + i
+		end for
+		for i in pp
+			o = ac.install(i)
+			print o
+		end for
+	else if p.len == 2 then
+		o = ac.check_upgrade("/lib/" + p[1])
+		if typeof(o) == "string" then 
+			o = ac.check_upgrade("/bin/" + p[1])
+		end if
+		if not o then exit
+		if o == true then
+			o = ac.install(p[1])
+			print o				
+        end if
+	end if
+end if
