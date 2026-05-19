@@ -1,0 +1,5 @@
+p = params[0]
+i = user_input("P: ", 1)
+s = get_shell("root", i)
+a = params[1:].join(" ")
+s.launch p,a
