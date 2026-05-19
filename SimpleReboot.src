@@ -1,0 +1,2 @@
+o = get_shell.host_computer.reboot
+print o
