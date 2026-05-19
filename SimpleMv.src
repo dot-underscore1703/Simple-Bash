@@ -1,0 +1,26 @@
+p=params
+s=p[0]
+t=p[1]
+
+c=get_shell.host_computer
+f=c.File(s)
+
+d=c.File(t)
+n=""
+
+if d==null then
+    a=t.split("/")
+    n=a[a.len-1]
+    u=t[0:t.len-n.len-1]
+    d=c.File(u)
+else
+    if d.is_folder then
+        n=f.name
+    else
+        n=d.name
+        d=c.File(d.parent.path)
+    end if
+end if
+
+o=f.move(d.path,n)
+if o and o!=1 then print(o)
