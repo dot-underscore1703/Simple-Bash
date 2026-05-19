@@ -1,6 +1,5 @@
 c = get_shell.host_computer
-fp = params[0]
-f = c.File(fp)
+f = c.File(params[0])
 s = f.get_folders + f.get_files
 o = ""
 for sf in s
