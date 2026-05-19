@@ -1,0 +1,36 @@
+p = params
+dF = p[1]
+
+c = get_shell.host_computer
+f = c.File(p[0])
+
+n = ""
+fo = c.File(dF)
+if not fo then
+	pp = parent_path(dF)
+					
+	if pp == dF then			
+		n = dF
+		dF = f.parent.path		
+		o = f.copy(dF, n)
+		if o and o != 1 then exit(o)
+	end if	
+
+	fo = c.File(pp)		
+end if
+
+if fo then
+	fD = fo.path
+				
+	if(n.len == 0) then
+		n = f.name
+	end if
+
+	if not fo.is_folder then			
+		fD = f.parent.path
+		n = fo.name
+	end if
+
+	o = f.copy(fD, n)
+	print o
+end if
