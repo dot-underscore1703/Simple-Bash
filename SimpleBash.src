@@ -1,16 +1,13 @@
-b=function()
-	o=user_input("_sb> ")
-	if(o.len==0) then return
-	l=o.trim.split(" ")
-	c=l[0]
-	s=""
-	if(l.len > 1) then
+while (1)
+	o = user_input("_sb> ")
+	if o.len == 0 then return 
+	l = o.trim.split(" ")
+	c = l[0]
+	s = ""
+	if l.len > 1 then
 		l.remove 0
 		s = l.join
 	end if
-	o=get_shell.launch(c,s)
+	o = get_shell.launch(c, s)
 	if o then print o
-end function
-while(1)
-    b
 end while
